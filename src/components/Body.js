@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 const Body = () => {
   return (
     <div className="flex">
-    <aside class="h-screen sticky top-0">
+    <aside className="h-screen sticky top-0">
         <Sidebar />
     </aside>
     <main>
