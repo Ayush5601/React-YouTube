@@ -11,8 +11,8 @@ const searchSlice = createSlice({
       state = Object.assign(state, action.payload);
       state.isClose = false;
     },
-    closeSuggestions: (state) =>{
-      state.isClose = true;
+    closeSuggestions: (state, action) =>{
+      state.isClose = action.payload;
     }
   },
 });
