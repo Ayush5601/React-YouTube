@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/contants";
-import { cacheResults } from "../utils/searchSlice";
-import { Link } from "react-router-dom";
+import { cacheResults, closeSuggestions } from "../utils/searchSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const navigate = useNavigate();
+  const handleClick = (search) => navigate(search);
+
   const searchCache = useSelector((store) => store.search);
+
+  // const isSuggestionClose = useSelector((store) => store.search.isClose)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +25,7 @@ const Head = () => {
       if (searchCache[searchQuery]) {
         setSuggestions(searchCache[searchQuery]);
       } else {
-        getSearchSugsestions();
+        getSearchSuggestions();
       }
     }, 200);
 
@@ -28,7 +34,7 @@ const Head = () => {
     };
   }, [searchQuery]);
 
-  const getSearchSugsestions = async () => {
+  const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
 
@@ -46,6 +52,10 @@ const Head = () => {
     dispatch(toggleMenu());
   };
 
+  const closeSuggestionsHandler = () => {
+    dispatch(closeSuggestions());
+  }
+
   return (
     <div className="grid grid-flow-col p-5 m-2 shadow-lg sticky top-0 bg-white z-10">
       <div className="flex col-span-1">
@@ -55,7 +65,7 @@ const Head = () => {
           alt="menu"
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAARVBMVEX///8jHyAgHB0OBQgMAAWlpKQpJSaenZ309PUAAAAIAAD8/Pz5+fna2tqop6dvbW1oZmevrq4tKivFxMQYExRiYGC+vr7Dc4WrAAABB0lEQVR4nO3cS3LCMBAFQGIIIBPbhN/9jxqSyiIsTUnlydB9g1eSNV5MvdUKAAAAAAAAAAAAAAAAXtEwvscwDk3yHabSb2Loy/TRIOHUv8XRH+sHHMrSqR6U+hd1jHSE90P8lHC2/Lc0/0vzMy3WMdynxaFBwu+Jv4uh0cQHAAAAAAAAAIB59jG0ijdcT9sYTtcmK0PncumiuJRz/YD7bbf0ut4f3br+GvQt2PblrXrC3WbpUA/6sXrC/GeY/zvM/5aGmofHZiu0S//M/GoVDwAAAAAAAAAAZsjeuRerN1HL7hPy95fm76DNnzD/Lc3/0rxAJ3v+Xn0AAAAAAAAAAAAAAAD4T74AYhs1O+vt3ioAAAAASUVORK5CYII="
         />
-        <a href="/" onClick={()=>setShowSuggestions(false)}>
+        <a href="/" onClick={()=>closeSuggestionsHandler}>
           <img
             className="h-8 mx-2"
             alt="youtube-logo"
@@ -73,6 +83,14 @@ const Head = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
             // onBlur={() => setShowSuggestions(false)}
+
+            onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setShowSuggestions(false);
+              // closeSuggestionsHandler();
+              handleClick("/search?q="+searchQuery);
+            }
+          }}
           />
           <Link to={"/search?q="+searchQuery}>
             <button type="button" onClick={()=>setShowSuggestions(false)} className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100">
