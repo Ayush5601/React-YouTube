@@ -11,13 +11,13 @@ const VideoContainer = () => {
   }, []);
 
   const getVideos = async () => {
-    const data = await fetch(YOUTUBE_VIDEOS_API);
+    const data = await fetch("https://corsproxy.io/?" + YOUTUBE_VIDEOS_API);
     const json = await data.json();
 
     setVideos(json.items);
   };
 
-  if(videos == null) return null;
+  if (videos == null) return null;
 
   return (
     <div className="flex flex-wrap">
