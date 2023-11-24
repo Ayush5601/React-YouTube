@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoResult = ({ info }) => {
   const { snippet } = info;
-  const { channelTitle, title, thumbnails } = snippet;
+  const { channelTitle, title, thumbnails, publishTime } = snippet;
 
   return (
     <div className="grid grid-flow-col shadow-lg p-2 m-2">
@@ -17,6 +17,7 @@ const VideoResult = ({ info }) => {
         <ul>
           <li className="font-bold py-2">{title}</li>
           <li>{channelTitle}</li>
+          <li>{publishTime.split("T")[0]}</li>
         </ul>
       </div>
     </div>

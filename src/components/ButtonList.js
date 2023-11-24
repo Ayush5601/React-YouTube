@@ -1,24 +1,29 @@
 import React from "react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
-// const list = ["All", "Live", "Gaming"];
+const list = [
+  "Stand Up Comedy",
+  "Music",
+  "Cricket",
+  "Tennis",
+  "Coding",
+  "Movies",
+  "Experiments",
+  "Cooking",
+  "Sports",
+  "Gaming",
+  "Trailers",
+];
 
 const ButtonList = () => {
   return (
     <div className="flex">
-      <Button name="All" />
-      <Button name="Gaming" />
-      <Button name="Songs" />
-      <Button name="Live" />
-      <Button name="Soccer" />
-      <Button name="Cricket" />
-      <Button name="Cooking" />
-      <Button name="Tennis" />
-      <Button name="Valentines" />
-      <Button name="Coding" />
-      <Button name="Music" />
-      <Button name="Movies" />
-      <Button name="Experiments" />
+      {list.map((item, index) => (
+        <Link key={index} to={"/search?q=" + item}>
+          <Button name={item} />
+        </Link>
+      ))}
     </div>
   );
 };
