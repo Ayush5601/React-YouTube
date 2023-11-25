@@ -12,10 +12,9 @@ const Head = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const navigate = useNavigate();
-  const handleClick = (search) => navigate(search);
+  const handleSearchClick = (search) => navigate(search);
 
   const searchCache = useSelector((store) => store.search);
-
   // const isSuggestionClose = useSelector((store) => store.search.isClose)
 
   const dispatch = useDispatch();
@@ -90,7 +89,7 @@ const Head = () => {
               if (e.key === "Enter") {
                 setShowSuggestions(false);
                 // closeSuggestionsHandler(true);
-                handleClick("/search?q=" + searchQuery);
+                handleSearchClick("/search?q=" + searchQuery);
               }
             }}
           />

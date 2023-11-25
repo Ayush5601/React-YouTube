@@ -8,9 +8,9 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="p-5 shadow-lg w-48 sticky top-24">
+    <div className="px-5 pb-5 shadow-lg w-48 sticky top-24">
       <ul>
-        <li>
+        <li className="font-bold pt-5">
           <Link to="/">Home</Link>
         </li>
         <li>
@@ -33,6 +33,13 @@ const Sidebar = () => {
         <li> Sports</li>
         <li> Gaming</li>
         <li> Movies</li>
+      </ul>
+      <h1 className="font-bold pt-5">You</h1>
+      <ul>
+        <li> Your Channel</li>
+        <li> Watch Later</li>
+        <li> Liked Videos</li>
+        <li> History</li>
       </ul>
     </div>
   );
