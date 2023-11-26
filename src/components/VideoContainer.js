@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { YOUTUBE_VIDEOS_API } from "../utils/contants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useRelatedVideos from "../utils/useRelatedVideos";
 
 const VideoContainer = () => {
-  const [videos, setVideos] = useState([]);
+  const category = useSelector((store) => store.category?.categoryName);
+  const popularVidoes = useSelector((store) => store.videos?.currentVideos);
+  const categoryVideos = useRelatedVideos(category);
 
-  useEffect(() => {
-    getVideos();
-  }, []);
-
-  const getVideos = async () => {
-    const data = await fetch("https://corsproxy.io/?" + YOUTUBE_VIDEOS_API);
-    const json = await data.json();
-
-    setVideos(json.items);
-  };
+  const videos =
+    !categoryVideos || category === "All" ? popularVidoes : categoryVideos;
 
   if (videos == null) return null;
 
@@ -23,8 +17,11 @@ const VideoContainer = () => {
     <div className="flex flex-wrap">
       {/* {videos[0] && <AdVideoCard info={videos[0]} />} */}
       {videos.map((video) => (
-        <Link key={video.id} to={"/watch?v=" + video.id}>
-          <VideoCard info={video} />
+        <Link
+          key={video.id?.videoId || video.id}
+          to={"/watch?v=" + video.id?.videoId || video.id}
+        >
+          <VideoCard info={video} id={video.id?.videoId || video.id} />
         </Link>
       ))}
     </div>
@@ -32,3 +29,8 @@ const VideoContainer = () => {
 };
 
 export default VideoContainer;
+
+/*
+the popularVideos and categoryVideos have video id in a different format, thus have to handle using '||'
+need to handle efficiently--> on going back to 'All' categories, the popular videos should display again
+*/

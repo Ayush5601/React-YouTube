@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
-import { YOUTUBE_SEARCH_API } from "../utils/contants";
+import { YOUTUBE_SEARCH_SUGGESTION_API } from "../utils/contants";
 import { cacheResults } from "../utils/searchSlice";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ const Head = () => {
 
   const getSearchSuggestions = async () => {
     const data = await fetch(
-      "https://corsproxy.io/?" + YOUTUBE_SEARCH_API + searchQuery
+      "https://corsproxy.io/?" + YOUTUBE_SEARCH_SUGGESTION_API + searchQuery
     );
     const json = await data.json();
 
