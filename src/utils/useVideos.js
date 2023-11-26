@@ -9,6 +9,7 @@ const useVideos = () => {
 
   useEffect(() => {
     !currentVideos && getVideos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getVideos = async () => {

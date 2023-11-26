@@ -12,11 +12,10 @@ const VideoCard = ({ info, id }) => {
         "https://corsproxy.io/?" + YOUTUBE_VIDEO_METADATA_API + id
       );
       const json = await data.json();
-      const items = json.items[0];
-      console.log(items);
+      const items = json?.items[0];
 
-      setDuration(items.contentDetails.duration);
-      setViews(items.statistics.viewCount);
+      setDuration(items?.contentDetails.duration);
+      setViews(items?.statistics.viewCount);
     };
     getVideoMetaData();
   }, [id]);
