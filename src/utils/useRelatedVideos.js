@@ -12,7 +12,6 @@ const useRelatedVideos = (query) => {
         "https://corsproxy.io/?" + YOUTUBE_RESULTS_API + query
       );
       const json = await data.json();
-
       setRelatedVideos(json?.items);
     };
     getRelatedVidoes();

@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { YOUTUBE_VIDEO_METADATA_API } from "../utils/contants";
+import numeral from "numeral";
+import moment from "moment";
+import useViewsAndDuration from "../utils/useViewsAndDuration";
 
 const VideoCard = ({ info, id }) => {
-  const { channelTitle, title, thumbnails } = info.snippet;
-  const [duration, setDuration] = useState(null);
-  const [views, setViews] = useState(null);
+  const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
 
-  useEffect(() => {
-    const getVideoMetaData = async () => {
-      const data = await fetch(
-        "https://corsproxy.io/?" + YOUTUBE_VIDEO_METADATA_API + id
-      );
-      const json = await data.json();
-      const items = json?.items[0];
+  const { _duration, views } = useViewsAndDuration(id);
 
-      setDuration(items?.contentDetails.duration);
-      setViews(items?.statistics.viewCount);
-    };
-    getVideoMetaData();
-  }, [id]);
+  console.log(views);
 
   return (
     <div className="p-2 m-2 w-[18rem] shadow-lg">
-      <img
-        className="rounded-lg"
-        alt="thumbnail"
-        src={thumbnails?.medium.url}
-      />
+      <div className="relative">
+        <img
+          className="rounded-lg"
+          alt="thumbnail"
+          src={thumbnails?.medium.url}
+        />
+        <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-75">
+          {_duration !== "00:00" && _duration}
+        </span>
+      </div>
       <ul>
-        <li className="font-bold py-2">{title}</li>
+        <li className="font-bold py-2">
+          {title.length > 50 ? title.substring(0, 50) + "..." : title}
+        </li>
+        <li>
+          <span>{views !== null && numeral(views).format("0.a")} Views • </span>
+          <span>{moment(publishedAt).fromNow()}</span>
+        </li>
         <li>{channelTitle}</li>
-        <li>{views} views</li>
-        <li>{duration} duration</li>
       </ul>
     </div>
   );

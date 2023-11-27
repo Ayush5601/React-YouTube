@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from "react-router-dom";
-import VideoResult from "./VideoResult";
-import useRelatedVideos from "../utils/useRelatedVideos";
+import VideoResultCard from "../VideoResultCard";
+import useRelatedVideos from "../../utils/useRelatedVideos";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -13,20 +13,19 @@ const SearchResults = () => {
       {relatedVideos ? (
         relatedVideos.map((video) => (
           <Link key={video?.id?.videoId} to={"/watch?v=" + video?.id?.videoId}>
-            <VideoResult info={video} />
+            <VideoResultCard info={video} />
           </Link>
         ))
       ) : (
-        <div className="text-5xl bg-red-400">Getting Videos...</div>
+        <div className="text-5xl">Getting Videos...</div>
       )}
     </div>
   );
 };
 
-export { SearchResults };
+export default SearchResults;
 
 /*
 side bar automatic collapsing
 esc keypress to hide suggestions
-enter keypress for search
 */

@@ -1,15 +1,15 @@
-import VideoCard from "./VideoCard";
+import VideoCard from "../VideoCard";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import useRelatedVideos from "../utils/useRelatedVideos";
+import useRelatedVideos from "../../utils/useRelatedVideos";
 
 const VideoContainer = () => {
   const category = useSelector((store) => store.category?.categoryName);
-  const popularVidoes = useSelector((store) => store.videos?.currentVideos);
+  const popularVideos = useSelector((store) => store.videos?.currentVideos);
   const categoryVideos = useRelatedVideos(category);
 
   const videos =
-    !categoryVideos || category === "All" ? popularVidoes : categoryVideos;
+    !categoryVideos || category === "All" ? popularVideos : categoryVideos;
 
   if (videos == null) return null;
 

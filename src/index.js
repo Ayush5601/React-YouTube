@@ -8,43 +8,43 @@ import Body from "./components/Body";
 import Demo from "./components/DemoUseMemo";
 import Demo2 from "./components/DemoUseRef";
 import MainContainer from "./components/MainContainer";
-import WatchPage from "./components/WatchPage";
-import { SearchResults } from "./components/SearchedVideos";
+import WatchPage from "./components/pages/WatchPage";
+import SearchResults from "./components/pages/SearchResults";
 
 const appRouter = createBrowserRouter([
-{
+  {
     path: "/",
     element: <App />,
     children: [
-        {
+      {
+        path: "/",
+        element: <Body />,
+        children: [
+          {
             path: "/",
-            element: <Body />,
-            children: [
-                {
-                    path: "/",
-                    element: <MainContainer />,
-                },
-                {
-                    path: "watch",
-                    element: <WatchPage />,
-                },
-                {
-                    path: "demo",
-                    element: (
-                        <>
-                        <Demo />
-                        <Demo2 />
-                        </>
-                    ),
-                },
-                {
-                    path: "search",
-                    element: <SearchResults />,
-                },
-            ],
-        },
+            element: <MainContainer />,
+          },
+          {
+            path: "watch",
+            element: <WatchPage />,
+          },
+          {
+            path: "demo",
+            element: (
+              <>
+                <Demo />
+                <Demo2 />
+              </>
+            ),
+          },
+          {
+            path: "search",
+            element: <SearchResults />,
+          },
+        ],
+      },
     ],
-},
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

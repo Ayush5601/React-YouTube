@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryList from "./CategoryList";
-import VideoContainer from "./VideoContainer";
+import VideoContainer from "./pages/VideoContainer";
 
 const MainContainer = () => {
   return (
