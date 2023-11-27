@@ -7,17 +7,15 @@ const VideoCard = ({ info, id }) => {
 
   const { _duration, views } = useViewsAndDuration(id);
 
-  console.log(views);
-
   return (
-    <div className="p-2 m-2 w-[18rem] shadow-lg">
+    <div className="p-2 m-2 w-[19rem] shadow-lg">
       <div className="relative">
         <img
           className="rounded-lg"
           alt="thumbnail"
           src={thumbnails?.medium.url}
         />
-        <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-75">
+        <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-80">
           {_duration !== "00:00" && _duration}
         </span>
       </div>

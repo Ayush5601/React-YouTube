@@ -18,7 +18,7 @@ const VideoResultCard = ({ info }) => {
             alt="thumbnail"
             src={thumbnails?.medium.url}
           />
-          <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-75">
+          <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-80">
             {_duration}
           </span>
         </div>
