@@ -24,7 +24,6 @@ const CategoryList = () => {
   );
   const dispatch = useDispatch();
 
-  console.log(activeCategory);
   const handleCategoryClick = (item) => {
     setActiveCategory(item);
     dispatch(setCategory(item));
