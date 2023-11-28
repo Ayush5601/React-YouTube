@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../utils/categorySlice";
 
 const list = [
@@ -18,9 +18,13 @@ const list = [
 ];
 
 const CategoryList = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  var category = useSelector((store) => store.category?.categoryName);
+  const [activeCategory, setActiveCategory] = useState(
+    category ? category : "All"
+  );
   const dispatch = useDispatch();
 
+  console.log(activeCategory);
   const handleCategoryClick = (item) => {
     setActiveCategory(item);
     dispatch(setCategory(item));
