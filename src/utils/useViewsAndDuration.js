@@ -5,6 +5,7 @@ import moment from "moment";
 const useViewsAndDuration = (id) => {
   const [duration, setDuration] = useState(null);
   const [views, setViews] = useState(null);
+
   useEffect(() => {
     const getVideoMetaData = async () => {
       const data = await fetch(

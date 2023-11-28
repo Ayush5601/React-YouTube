@@ -1,13 +1,11 @@
 import numeral from "numeral";
 import moment from "moment";
+import useViewsAndDuration from "../utils/useViewsAndDuration";
 
-const VideoCard = ({ info }) => {
+const VideoCategoryCard = ({ info, id }) => {
   const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
 
-  const duration = info.contentDetails?.duration;
-  const seconds = moment.duration(duration).asSeconds();
-  const _duration = moment.utc(seconds * 1000).format("mm:ss");
-  const views = info.statistics?.viewCount;
+  const { _duration, views } = useViewsAndDuration(id);
 
   return (
     <div className="p-2 m-2 w-[19rem] shadow-lg">
@@ -35,12 +33,12 @@ const VideoCard = ({ info }) => {
   );
 };
 
-export const AdVideoCard = ({ info }) => {
-  return (
-    <div className="p-1 m-1 border border-red-900 ">
-      <VideoCard info={info} />
-    </div>
-  );
-};
+export default VideoCategoryCard;
 
-export default VideoCard;
+/*
+this was previosuly a state less component which just displayed video info passed as props
+but since the video_search api does not have the duration and view details we have to make an extra api call
+and make this component handle these states
+
+made this component separately since it had an additional api call that home videos did not require
+*/

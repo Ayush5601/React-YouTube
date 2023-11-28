@@ -6,8 +6,11 @@ const useRelatedVideos = (query) => {
 
   useEffect(() => {
     const getRelatedVidoes = async () => {
-      if (query?.trim().length === 0) return;
-
+      if (query?.trim().length === 0) {
+        //cleaning up old set category video
+        setRelatedVideos(null);
+        return;
+      }
       const data = await fetch(
         "https://corsproxy.io/?" + YOUTUBE_RESULTS_API + query
       );
