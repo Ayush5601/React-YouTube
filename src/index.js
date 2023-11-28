@@ -10,6 +10,7 @@ import Demo2 from "./components/DemoUseRef";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/pages/WatchPage";
 import SearchResults from "./components/pages/SearchResults";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const appRouter = createBrowserRouter([
   {

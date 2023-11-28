@@ -1,5 +1,6 @@
 import numeral from "numeral";
 import moment from "moment";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const VideoCard = ({ info }) => {
   const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
@@ -12,13 +13,14 @@ const VideoCard = ({ info }) => {
   return (
     <div className="p-2 m-2 w-[19rem] shadow-lg">
       <div className="relative">
-        <img
+        <LazyLoadImage
           className="rounded-lg"
           alt="thumbnail"
           src={thumbnails?.medium.url}
+          effect="blur"
         />
-        <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-80">
-          {_duration !== "00:00" && _duration}
+        <span className="absolute px-1 right-1 bottom-2 bg-slate-200 rounded-md opacity-80">
+          {_duration}
         </span>
       </div>
       <ul>
@@ -26,7 +28,7 @@ const VideoCard = ({ info }) => {
           {title.length > 50 ? title.substring(0, 50) + "..." : title}
         </li>
         <li>
-          <span>{views !== null && numeral(views).format("0.a")} Views • </span>
+          <span>{numeral(views).format("0.a")} Views • </span>
           <span>{moment(publishedAt).fromNow()}</span>
         </li>
         <li>{channelTitle}</li>

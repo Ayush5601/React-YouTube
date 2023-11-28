@@ -5,30 +5,36 @@ import useRelatedVideos from "../../utils/useRelatedVideos";
 import VideoCategoryCard from "../VideoCategoryCard";
 
 const VideoContainer = () => {
-  const popularVideos = useSelector((store) => store.videos?.currentVideos);
+  var popularVideos = useSelector((store) => store.videos?.currentVideos);
+
   var category = useSelector((store) => store.category?.categoryName);
-  if (category === "All") category = "";
+
+  if (category === "All" || !category) category = "";
+
   const categoryVideos = useRelatedVideos(category);
 
   const videos = !categoryVideos ? popularVideos : categoryVideos;
 
-  if (videos == null) return null;
-
-  return (
-    <div className="flex flex-wrap">
-      {/* {videos[0] && <AdVideoCard info={videos[0]} />} */}
-      {videos.map((video, index) =>
-        !category ? (
-          <Link key={index} to={"/watch?v=" + video.id}>
-            <VideoCard info={video} />
-          </Link>
-        ) : (
-          <Link key={index} to={"/watch?v=" + video.id.videoId}>
-            <VideoCategoryCard info={video} id={video.id.videoId} />
-          </Link>
-        )
-      )}
-    </div>
+  return !videos ? (
+    <div>Loading....</div>
+  ) : (
+    <>
+      <div className="flex flex-wrap">
+        {/* {videos[0] && <AdVideoCard info={videos[0]} />} */}
+        {videos.map((video, index) =>
+          !category ? (
+            <Link key={index} to={"/watch?v=" + video.id}>
+              <VideoCard info={video} />
+            </Link>
+          ) : (
+            <Link key={index} to={"/watch?v=" + video.id.videoId}>
+              <VideoCategoryCard info={video} id={video.id.videoId} />
+            </Link>
+          )
+        )}
+      </div>
+      )
+    </>
   );
 };
 
