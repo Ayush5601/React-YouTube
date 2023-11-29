@@ -11,9 +11,7 @@ const useRelatedVideos = (query) => {
         setRelatedVideos(null);
         return;
       }
-      const data = await fetch(
-        "https://corsproxy.io/?" + YOUTUBE_RESULTS_API + query
-      );
+      const data = await fetch(YOUTUBE_RESULTS_API + query);
       const json = await data.json();
       setRelatedVideos(json?.items);
     };

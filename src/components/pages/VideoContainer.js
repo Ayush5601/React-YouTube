@@ -33,7 +33,6 @@ const VideoContainer = () => {
           )
         )}
       </div>
-      )
     </>
   );
 };

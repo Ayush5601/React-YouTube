@@ -6,9 +6,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const VideoCategoryCard = ({ info, id }) => {
   const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
 
-  const { _duration, views } = useViewsAndDuration(id);
+  const { duration, views } = useViewsAndDuration(id);
 
-  if (!_duration && !views) return null;
+  if (!duration || !views) return null;
+
+  const seconds = moment.duration(duration).asSeconds();
+  const _duration = moment.utc(seconds * 1000).format("mm:ss");
 
   return (
     <div className="p-2 m-2 w-[19rem] shadow-lg">

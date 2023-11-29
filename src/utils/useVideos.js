@@ -13,7 +13,7 @@ const useVideos = () => {
   }, []);
 
   const getVideos = async () => {
-    const data = await fetch("https://corsproxy.io/?" + YOUTUBE_VIDEOS_API);
+    const data = await fetch(YOUTUBE_VIDEOS_API);
     const json = await data.json();
     dispatch(setCurrentVideos(json.items));
   };
