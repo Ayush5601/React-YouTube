@@ -8,9 +8,12 @@ const VideoResultCard = ({ info }) => {
   const { snippet } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
 
-  const { _duration, views } = useViewsAndDuration(info.id?.videoId);
+  const { duration, views } = useViewsAndDuration(info.id?.videoId);
 
-  if (!_duration && !views) return null;
+  if (!duration || !views) return null;
+
+  const seconds = moment.duration(duration).asSeconds();
+  const _duration = moment.utc(seconds * 1000).format("mm:ss");
 
   return (
     <div className="grid grid-flow-col shadow-lg p-2 m-2">
@@ -22,7 +25,7 @@ const VideoResultCard = ({ info }) => {
             src={thumbnails?.medium.url}
             effect="blur"
           />
-          <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-80">
+          <span className="absolute px-1 right-1 bottom-2 bg-slate-200 rounded-md opacity-80">
             {_duration}
           </span>
         </div>
