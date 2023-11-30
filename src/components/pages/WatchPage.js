@@ -14,19 +14,20 @@ const WatchPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="flex flex-col w-full">
-      <div className="px-5 flex w-full">
-        <div className="">
+    <div className="flex flex-wrap flex-col">
+      <div className="flex flex-wrap px-5 ">
+        <div className="mb-5 mr-5 w-[60vw] h-[85vh] grow">
           <iframe
-            width="1000"
-            height="600"
+            className="rounded-lg"
+            width="100%"
+            height="100%"
             src={"https://www.youtube.com/embed/" + searchParams.get("v")}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
         </div>
-        <div className="w-full">
+        <div className="grow">
           <LiveChat />
         </div>
       </div>

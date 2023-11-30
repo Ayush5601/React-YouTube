@@ -30,7 +30,7 @@ const CategoryList = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {list.map((item, index) => (
         <div key={index}>
           <button

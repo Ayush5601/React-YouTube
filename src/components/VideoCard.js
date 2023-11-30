@@ -11,7 +11,7 @@ const VideoCard = ({ info }) => {
   const views = info.statistics?.viewCount;
 
   return (
-    <div className="p-2 m-2 w-[19rem] shadow-lg">
+    <div className="p-2 m-2 w-[19rem] shadow-lg grow">
       <div className="relative">
         <LazyLoadImage
           className="rounded-lg"

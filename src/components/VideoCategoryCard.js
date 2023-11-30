@@ -14,7 +14,7 @@ const VideoCategoryCard = ({ info, id }) => {
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
 
   return (
-    <div className="p-2 m-2 w-[19rem] shadow-lg">
+    <div className="p-2 m-2 w-[19rem] shadow-lg grow">
       <div className="relative">
         <LazyLoadImage
           className="rounded-lg"

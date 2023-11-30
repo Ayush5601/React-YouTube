@@ -11,7 +11,7 @@ const Body = () => {
       <aside className="h-screen sticky top-0">
         <Sidebar />
       </aside>
-      <main>
+      <main className="">
         <Outlet />
       </main>
     </div>
