@@ -13,7 +13,6 @@ const LiveChat = () => {
   useEffect(() => {
     const i = setInterval(() => {
       // API Polling
-
       dispatch(
         addMessage({
           name: generateRandomName(),
@@ -52,7 +51,7 @@ const LiveChat = () => {
         }}
       >
         <input
-          className="px-2 w-[90%]"
+          className="px-2 w-[90%] outline-none"
           type="text"
           placeholder="Speak your mind up!"
           value={liveMessage}
