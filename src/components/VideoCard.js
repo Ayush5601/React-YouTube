@@ -1,6 +1,7 @@
 import numeral from "numeral";
 import moment from "moment";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { AiFillEye } from "react-icons/ai";
 
 const VideoCard = ({ info }) => {
   const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
@@ -28,10 +29,15 @@ const VideoCard = ({ info }) => {
           {title.length > 50 ? title.substring(0, 50) + "..." : title}
         </li>
         <li>
-          <span>{numeral(views).format("0.a")} Views • </span>
-          <span>{moment(publishedAt).fromNow()}</span>
+          <div className="flex">
+            <span className="mt-1 mr-1">
+              <AiFillEye />
+            </span>
+            <span>{numeral(views).format("0.a")} Views • </span>
+            <span className="ml-1">{moment(publishedAt).fromNow()}</span>
+          </div>
         </li>
-        <li>{channelTitle}</li>
+        <li className="text-slate-600">{channelTitle}</li>
       </ul>
     </div>
   );

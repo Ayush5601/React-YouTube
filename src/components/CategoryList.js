@@ -35,7 +35,7 @@ const CategoryList = () => {
         <div key={index}>
           <button
             onClick={() => handleCategoryClick(item)}
-            className={`px-5 py-2 m-2 ${
+            className={`px-5 py-2 m-2 hover:bg-slate-200 ${
               activeCategory === item ? "bg-slate-400" : "bg-gray-200"
             }  rounded-lg`}
           >

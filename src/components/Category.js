@@ -11,7 +11,7 @@ const Category = ({ name }) => {
         onClick={() => handleCategoryClick(name)}
         className={`px-5 py-2 m-2 ${
           isClicked ? "bg-slate-500" : "bg-gray-200"
-        }  rounded-lg`}
+        } rounded-lg`}
       >
         {name}
       </button>

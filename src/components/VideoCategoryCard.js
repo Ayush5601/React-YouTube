@@ -1,7 +1,7 @@
 import numeral from "numeral";
 import moment from "moment";
 import useViewsAndDuration from "../utils/useViewsAndDuration";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { AiFillEye } from "react-icons/ai";
 
 const VideoCategoryCard = ({ info, id }) => {
   const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
@@ -16,13 +16,12 @@ const VideoCategoryCard = ({ info, id }) => {
   return (
     <div className="p-2 m-2 w-[19rem] shadow-lg grow">
       <div className="relative">
-        <LazyLoadImage
+        <img
           className="rounded-lg"
           alt="thumbnail"
           src={thumbnails?.medium.url}
-          effect="blur"
         />
-        <span className="absolute px-1 right-1 bottom-2 bg-slate-200 rounded-md opacity-80">
+        <span className="absolute px-1 right-1 bottom-1 bg-slate-200 rounded-md opacity-80">
           {_duration}
         </span>
       </div>
@@ -31,10 +30,15 @@ const VideoCategoryCard = ({ info, id }) => {
           {title.length > 50 ? title.substring(0, 50) + "..." : title}
         </li>
         <li>
-          <span>{numeral(views).format("0.a")} Views • </span>
-          <span>{moment(publishedAt).fromNow()}</span>
+          <div className="flex">
+            <span className="mt-1 mr-1">
+              <AiFillEye />
+            </span>
+            <span>{numeral(views).format("0.a")} Views •</span>
+            <span className="ml-1">{moment(publishedAt).fromNow()}</span>
+          </div>
         </li>
-        <li>{channelTitle}</li>
+        <li className="text-slate-600">{channelTitle}</li>
       </ul>
     </div>
   );
