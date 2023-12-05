@@ -1,10 +1,16 @@
 import VideoCard from "../VideoCard";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import useRelatedVideos from "../../utils/useRelatedVideos";
 import VideoCategoryCard from "../VideoCategoryCard";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMenu } from "../../utils/appSlice";
 
 const VideoContainer = () => {
+  const dispatch = useDispatch();
+
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
+  if (!isMenuOpen) dispatch(toggleMenu());
   var popularVideos = useSelector((store) => store.videos?.currentVideos);
 
   var category = useSelector((store) => store.category?.categoryName);

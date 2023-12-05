@@ -8,7 +8,7 @@ const Body = () => {
 
   return (
     <div className="flex">
-      <aside className="h-screen sticky top-0">
+      <aside className="sticky top-0">
         <Sidebar />
       </aside>
       <main className="">
