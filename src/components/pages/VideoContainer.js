@@ -22,8 +22,10 @@ const VideoContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   useEffect(() => {
+    console.log(isMenuOpen);
     if (!isMenuOpen) dispatch(toggleMenu());
-  }, [dispatch, isMenuOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return !videos ? (
     <div>Loading....</div>
