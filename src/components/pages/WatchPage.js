@@ -10,12 +10,12 @@ const WatchPage = () => {
   const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(closeMenu());
+    dispatch(clearMessages());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  dispatch(clearMessages());
 
   return (
     <div className="flex flex-wrap flex-col">

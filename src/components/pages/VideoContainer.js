@@ -4,13 +4,11 @@ import useRelatedVideos from "../../utils/useRelatedVideos";
 import VideoCategoryCard from "../VideoCategoryCard";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../../utils/appSlice";
+import { useEffect } from "react";
 
 const VideoContainer = () => {
   const dispatch = useDispatch();
 
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-
-  if (!isMenuOpen) dispatch(toggleMenu());
   var popularVideos = useSelector((store) => store.videos?.currentVideos);
 
   var category = useSelector((store) => store.category?.categoryName);
@@ -20,6 +18,12 @@ const VideoContainer = () => {
   const categoryVideos = useRelatedVideos(category);
 
   const videos = !categoryVideos ? popularVideos : categoryVideos;
+
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
+  useEffect(() => {
+    if (!isMenuOpen) dispatch(toggleMenu());
+  }, [dispatch, isMenuOpen]);
 
   return !videos ? (
     <div>Loading....</div>
