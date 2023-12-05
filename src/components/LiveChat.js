@@ -25,9 +25,9 @@ const LiveChat = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <h1 className="text-2xl font-bold"> Live Chat:</h1>
-      <div className="w-full h-[530px] p-2 border border-black bg-slate-100 rounded-t-lg overflow-y-scroll flex flex-col-reverse">
+      <div className="w-full h-[500px] p-2 border border-black bg-slate-100 rounded-t-lg overflow-y-scroll flex flex-col-reverse">
         <div>
           {
             // Disclaimer: Don't use indexes as keys
@@ -54,7 +54,7 @@ const LiveChat = () => {
         <input
           className="px-2 w-[90%] outline-none"
           type="text"
-          placeholder="Speak your mind up!"
+          placeholder="Speak your mind up...!"
           value={liveMessage}
           onChange={(e) => {
             setLiveMessage(e.target.value);
@@ -64,7 +64,7 @@ const LiveChat = () => {
           Send
         </button>
       </form>
-    </div>
+    </>
   );
 };
 export default LiveChat;
