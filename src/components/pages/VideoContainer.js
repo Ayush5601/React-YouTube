@@ -39,7 +39,7 @@ const VideoContainer = () => {
             </Link>
           ) : (
             <Link key={index} to={"/watch?v=" + video.id.videoId}>
-              <VideoCategoryCard info={video} id={video.id.videoId} />
+              <VideoCategoryCard info={video} />
             </Link>
           )
         )}
