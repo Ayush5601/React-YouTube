@@ -5,16 +5,19 @@ import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_RESULTS_API, YOUTUBE_VIDEOS_API } from "../utils/contants";
 import { setCurrentVideos } from "../utils/videosSlice";
 import VideoCategoryCard from "./VideoCategoryCard";
+import { setLastCategory } from "../utils/categorySlice";
 // import { useState } from "react";
 
 const OptimisedVideoContainer = () => {
   const dispatch = useDispatch();
 
-  var category = useSelector((store) => store.category?.categoryName);
+  const category = useSelector((store) => store.category?.categoryName);
 
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  const lastCategory = useSelector((store) => store.category?.lastCategoryName);
 
   const videos = useSelector((store) => store.videos?.currentVideos);
+
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   //   const [videos, setVideos] = useState();
 
@@ -36,7 +39,10 @@ const OptimisedVideoContainer = () => {
       //   setVideos(json.items);
     };
 
-    getVideos();
+    if (lastCategory !== category) {
+      dispatch(setLastCategory(category));
+      getVideos();
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
