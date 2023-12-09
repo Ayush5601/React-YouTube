@@ -1,11 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import useVideos from "../utils/useVideos";
 
 const Body = () => {
-  useVideos();
-
   return (
     <div className="flex">
       <aside className="sticky top-0">
@@ -21,6 +18,8 @@ const Body = () => {
 export default Body;
 
 /*
+esc keypress to hide suggestions
+
   onKeyDown={(e) => {
     if (e.key === "Escape" && !isSuggestionClose) {
       dispatch(closeSuggestions()); 
