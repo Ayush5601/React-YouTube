@@ -19,14 +19,12 @@ const list = [
 
 const CategoryList = () => {
   var category = useSelector((store) => store.category?.categoryName);
-  const [activeCategory, setActiveCategory] = useState(
-    category ? category : "All"
-  );
+  const [activeCategory, setActiveCategory] = useState(category);
   const dispatch = useDispatch();
 
   const handleCategoryClick = (item) => {
     setActiveCategory(item);
-    item === "All" ? dispatch(setCategory("")) : dispatch(setCategory(item));
+    dispatch(setCategory(item));
   };
 
   return (

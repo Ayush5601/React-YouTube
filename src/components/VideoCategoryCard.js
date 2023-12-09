@@ -9,9 +9,7 @@ const VideoCategoryCard = ({ info }) => {
     snippet: { channelTitle, title, thumbnails, publishedAt },
   } = info;
 
-  const _videoId = id?.videoId || id;
-
-  const { _duration, views } = useViewsAndDuration(info, _videoId);
+  const { _duration, views } = useViewsAndDuration(info, id?.videoId);
 
   return (
     <div className="p-2 m-2 w-[19rem] shadow-lg grow">
