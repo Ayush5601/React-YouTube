@@ -1,3 +1,5 @@
+import { YOUTUBE_RESULTS_API, YOUTUBE_VIDEOS_API } from "./contants";
+
 var nameList = [
   "Time",
   "Past",
@@ -217,4 +219,19 @@ export const findPrime = (num) => {
     n += 2;
   }
   return primes[num - 1];
+};
+
+export const getRelatedVideos = async (query) => {
+  if (query?.trim().length === 0) {
+    return;
+  }
+  const data = await fetch(YOUTUBE_RESULTS_API + query);
+  const json = await data.json();
+  return json?.items;
+};
+
+export const getPopularVideos = async () => {
+  const data = await fetch(YOUTUBE_VIDEOS_API);
+  const json = await data.json();
+  return json.items;
 };
