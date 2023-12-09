@@ -26,7 +26,7 @@ const CategoryList = () => {
 
   const handleCategoryClick = (item) => {
     setActiveCategory(item);
-    dispatch(setCategory(item));
+    item === "All" ? dispatch(setCategory("")) : dispatch(setCategory(item));
   };
 
   return (
