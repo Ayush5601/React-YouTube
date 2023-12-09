@@ -3,10 +3,15 @@ import moment from "moment";
 import useViewsAndDuration from "../utils/useViewsAndDuration";
 import { AiFillEye } from "react-icons/ai";
 
-const VideoCategoryCard = ({ info, id }) => {
-  const { channelTitle, title, thumbnails, publishedAt } = info.snippet;
+const VideoCategoryCard = ({ info }) => {
+  const {
+    id,
+    snippet: { channelTitle, title, thumbnails, publishedAt },
+  } = info;
 
-  const { duration, views } = useViewsAndDuration(id);
+  const _videoId = id?.videoId || id;
+
+  const { duration, views } = useViewsAndDuration(_videoId);
 
   if (!duration || !views) return null;
 
