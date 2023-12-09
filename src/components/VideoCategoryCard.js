@@ -11,12 +11,7 @@ const VideoCategoryCard = ({ info }) => {
 
   const _videoId = id?.videoId || id;
 
-  const { duration, views } = useViewsAndDuration(_videoId);
-
-  if (!duration || !views) return null;
-
-  const seconds = moment.duration(duration).asSeconds();
-  const _duration = moment.utc(seconds * 1000).format("mm:ss");
+  const { _duration, views } = useViewsAndDuration(info, _videoId);
 
   return (
     <div className="p-2 m-2 w-[19rem] shadow-lg grow">

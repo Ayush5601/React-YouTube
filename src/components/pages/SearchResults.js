@@ -36,8 +36,3 @@ const SearchResults = () => {
 };
 
 export default SearchResults;
-
-/*
-side bar automatic collapsing
-esc keypress to hide suggestions
-*/
