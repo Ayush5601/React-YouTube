@@ -33,3 +33,10 @@ const useViewsAndDuration = (info, id) => {
 };
 
 export default useViewsAndDuration;
+
+/*
+(!duration && !views) && getVideoMetaData()
+The above check can be used here similar to what is done inside optimised container to prevent extra api call
+when going back. But simultanelously we'll have to set the duration & views inside the store corresponding to
+an id. 
+*/
