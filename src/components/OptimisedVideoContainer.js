@@ -39,6 +39,7 @@ const OptimisedVideoContainer = () => {
       //   setVideos(json.items);
     };
 
+    //trick to avoid extra api calls when going back from watchPage to homePage (calls are made since url change happens and entire page re-renders)
     if (lastCategory !== category) {
       dispatch(setLastCategory(category));
       getVideos();
