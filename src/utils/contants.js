@@ -3,6 +3,8 @@ const GOOGLE_API_KEY = "AIzaSyB2aYmsb0nA1cyxyDAcxzo3MiY-eoFOyp4";
 
 export const LIVE_CHAT_COUNT = 25;
 
+export const PROXY_URL = "https://thingproxy.freeboard.io/fetch/";
+
 const MAX = 16;
 
 export const YOUTUBE_VIDEOS_API =
