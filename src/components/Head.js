@@ -34,9 +34,7 @@ const Head = () => {
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
-    const data = await fetch(
-      "https://corsproxy.io/?" + YOUTUBE_SEARCH_SUGGESTION_API + searchQuery
-    );
+    const data = await fetch(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
     const json = await data.json();
 
     setSuggestions(json[1]);

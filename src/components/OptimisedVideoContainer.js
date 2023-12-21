@@ -48,8 +48,6 @@ const OptimisedVideoContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
-  // console.log(videos);
-
   return !videos ? (
     <div className="text-5xl">Loading....</div>
   ) : (
@@ -57,8 +55,8 @@ const OptimisedVideoContainer = () => {
       <div className="flex flex-wrap">
         {videos.map((video) => (
           <Link
-            key={video.id?.videoId || video.id}
-            to={"/watch?v=" + video.id?.videoId || video.id}
+            key={video.id.videoId ? video.id.videoId : video.id}
+            to={"/watch?v=" + (video.id.videoId ? video.id.videoId : video.id)}
           >
             <VideoCategoryCard info={video} />
           </Link>
