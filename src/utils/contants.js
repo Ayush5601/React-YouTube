@@ -3,7 +3,7 @@ const GOOGLE_API_KEY = "AIzaSyB2aYmsb0nA1cyxyDAcxzo3MiY-eoFOyp4";
 
 export const LIVE_CHAT_COUNT = 25;
 
-export const PROXY_URL = "https://thingproxy.freeboard.io/fetch/";
+export const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
 
 const MAX = 16;
 
