@@ -3,7 +3,7 @@ const GOOGLE_API_KEY = "AIzaSyB2aYmsb0nA1cyxyDAcxzo3MiY-eoFOyp4";
 
 export const LIVE_CHAT_COUNT = 25;
 
-export const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+export const PROXY_URL = "https://cors-proxy.fringe.zone/";
 
 const MAX = 16;
 
