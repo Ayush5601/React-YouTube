@@ -78,6 +78,8 @@ const Head = () => {
         ? suggestions[activeSuggestion]
         : searchQuery;
 
+      setSearchQuery(searchItem);
+
       handleSearchClick("/search?q=" + searchItem);
 
       setShowSuggestions(false);
@@ -138,6 +140,7 @@ const Head = () => {
                     key={s}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => {
+                      setSearchQuery(s);
                       setShowSuggestions(false);
                       inputRef.current.blur();
                     }}
