@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { PROXY_URL, YOUTUBE_SEARCH_SUGGESTION_API } from "../utils/contants";
@@ -10,6 +10,8 @@ const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
+  const inputRef = useRef();
 
   const navigate = useNavigate();
   const handleSearchClick = (search) => navigate(search);
@@ -57,6 +59,36 @@ const Head = () => {
   //   dispatch(closeSuggestions(val));
   // }
 
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowDown" && suggestions?.length > 0) {
+      e.preventDefault();
+      setActiveSuggestion((prevIndex) =>
+        prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    } else if (e.key === "ArrowUp" && suggestions?.length > 0) {
+      e.preventDefault();
+      setActiveSuggestion((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+    } else if (
+      e.key === "Enter" &&
+      activeSuggestion >= 0 &&
+      activeSuggestion < suggestions.length
+    ) {
+      e.preventDefault();
+      let searchItem = suggestions[activeSuggestion]
+        ? suggestions[activeSuggestion]
+        : searchQuery;
+
+      handleSearchClick("/search?q=" + searchItem);
+
+      setShowSuggestions(false);
+      inputRef.current.blur();
+      // closeSuggestionsHandler(true);
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+      inputRef.current.blur();
+    }
+  };
+
   return (
     <div className="grid grid-flow-col p-5 m-2 shadow-lg sticky top-0 bg-white z-10">
       <div className="flex col-span-1">
@@ -77,21 +109,15 @@ const Head = () => {
       <div className="col-span-10 px-10">
         <div>
           <input
+            ref={inputRef}
             className="px-5 w-1/2 border border-gray-400 p-2 rounded-l-full"
             type="text"
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
             onFocus={() => setShowSuggestions(true)}
-            // onBlur={() => setShowSuggestions(false)}
-
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                setShowSuggestions(false);
-                // closeSuggestionsHandler(true);
-                handleSearchClick("/search?q=" + searchQuery);
-              }
-            }}
+            onBlur={() => setShowSuggestions(false)}
           />
           <Link to={"/search?q=" + searchQuery}>
             <button
@@ -106,12 +132,20 @@ const Head = () => {
         {showSuggestions && (
           <div className="fixed bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
             <ul>
-              {suggestions.map((s) => (
+              {suggestions?.map((s, index) => (
                 <Link key={s} to={"/search?q=" + s}>
                   <li
                     key={s}
-                    onClick={() => setShowSuggestions(false)}
-                    className="py-2 px-3 shadow-sm hover:bg-gray-100 cursor-pointer"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => {
+                      setShowSuggestions(false);
+                      inputRef.current.blur();
+                    }}
+                    className={
+                      index === activeSuggestion
+                        ? "bg-gray-200"
+                        : "py-2 px-3 shadow-sm hover:bg-gray-200 cursor-pointer"
+                    }
                   >
                     🔍 {s}
                   </li>
