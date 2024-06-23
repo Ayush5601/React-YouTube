@@ -5,7 +5,7 @@ export const LIVE_CHAT_COUNT = 25;
 
 export const PROXY_URL = "https://cors-anywhere-sgp2.onrender.com/";
 
-const MAX = 4;
+const MAX = 16;
 
 export const YOUTUBE_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=" +
