@@ -3,9 +3,9 @@ const GOOGLE_API_KEY = "AIzaSyB2aYmsb0nA1cyxyDAcxzo3MiY-eoFOyp4";
 
 export const LIVE_CHAT_COUNT = 25;
 
-export const PROXY_URL = "https://cors-proxy.fringe.zone/";
+export const PROXY_URL = "https://cors-anywhere-sgp2.onrender.com/";
 
-const MAX = 16;
+const MAX = 4;
 
 export const YOUTUBE_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=" +
